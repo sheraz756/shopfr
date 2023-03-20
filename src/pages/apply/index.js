@@ -5,6 +5,7 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
+import { Layout } from "../../components/layout";
 // import {  useParams } from 'react-router-dom';
 // import { useNavigate } from "react-router-dom";
 
@@ -32,12 +33,7 @@ const style = {
   borderRadius: 1,
   p: 4,
 };
-
-const Apply =
-  () =>
-  ({ open, handleClose }) => {
-    // const router = useRouter();
-    // const { id } = useParams();
+const Page = () => {
     const router = useRouter();
     const [jobname, setjobname] = useState("");
     const [shopname, setshopname] = useState("");
@@ -81,7 +77,7 @@ const Apply =
           aria-labelledby="Job-title"
           aria-describedby="job-inputs"
           open={open}
-          onClose={handleClose}
+          // onClose={handleClose}
           closeAfterTransition
           BackdropComponent={Backdrop}
           BackdropProps={{
@@ -207,6 +203,6 @@ const Apply =
         </Modal>
       </>
     );
-  };
+        }
 Page.getLayout = (Update) => <Layout>{Apply}</Layout>;
-export default Apply;
+export default Page;

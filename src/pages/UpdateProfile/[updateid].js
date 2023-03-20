@@ -62,14 +62,14 @@ const index = () => {
   }
   async function UserProfile() {
     try{
-   const res =  await  axios.post(`http://82.180.132.111:4500/user/${_id}`,formData,{
+   const res =  await  axios.post(`http://82.180.132.111:4500/user/${_id}`,updatePost,{
       headers: {
         Authorization: `Bearer ${JWTtoken}`,
       },
     },
       )
     console.log(res)
-   console.log(formData)
+   
 
 console.log(res)    }
     catch(e){
