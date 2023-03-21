@@ -85,7 +85,7 @@ const index = ({ handleClose }) => {
   const id = Router.query.id;
   return (
     <div>
-     {isVisible &&  <Modal
+      <Modal
         aria-labelledby="Job-title"
         aria-describedby="job-inputs"
         open={open}
@@ -214,7 +214,7 @@ const index = ({ handleClose }) => {
             </Grid>
           </Grid>
         </Box>
-      </Modal>}
+      </Modal>
     </div>
   );
 };

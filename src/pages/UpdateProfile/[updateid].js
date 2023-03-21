@@ -76,6 +76,23 @@ console.log(res)    }
       console.log(e)
     }
   }
+  async function UserProfileImg() {
+    try{
+   const res =  await  axios.put(`http://82.180.132.111:4500/userImg/${_id}`,formData,{
+      headers: {
+        Authorization: `Bearer ${JWTtoken}`,
+      },
+    },
+      )
+    console.log(res)
+   
+
+console.log(res)    }
+    catch(e){
+      console.log(e)
+    }
+  }
+  console.log(formData)
   return (
     <Box>
       <Container maxWidth="xl">
@@ -234,7 +251,9 @@ console.log(res)    }
           </Grid>
         </Grid>
         <Grid item xs={12}>
+          <button onClick={UserProfileImg}>sumb </button>
         <input type="file" onChange={(e) => setuserimg(e.target.files[0])} />
+       
           <Stack direction="row" spacing={2} sx={{ justifyContent: "flex-end" }}>
             <Button variant="outlined" >Cancel</Button>
             <Button variant="contained" onClick={()=>UserProfile(_doc.Id)}>

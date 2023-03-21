@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 // import { useNavigate } from "react-router-dom";
+
 import { useParams } from "react-router-dom";
 
 import {
@@ -52,12 +53,12 @@ const index = ({ handleClose }) => {
   // const JWTtoken = window.localStorage.getItem("JWTtoken");/
   const formData = new FormData();
   formData.append("postimg", postimg);
-  // formData.append("jobname",jobname)
-  // formData.append("shopname",shopname)
-  // formData.append("shoploc",shoploc)
-  // formData.append("workersReq",workersReq)
-  // formData.append("salary",salary)
-  // formData.append("timing",timing)
+  formData.append("jobname",jobname)
+  formData.append("shopname",shopname)
+  formData.append("shoploc",shoploc)
+  formData.append("workersReq",workersReq)
+  formData.append("salary",salary)
+  formData.append("timing",timing)
   const JWTtoken = window.localStorage.getItem("JWTtoken");
   const config = {
     headers: {
@@ -65,7 +66,8 @@ const index = ({ handleClose }) => {
     },
   };
   const set = useParams();
-  async function update(id) {
+
+  async function updatePic(id) {
     console.log(set);
     // if(!postimg||!jobname||!shopname||!shoploc||!workersReq||!salary||!timing)
     // {
@@ -76,12 +78,38 @@ const index = ({ handleClose }) => {
     // }
     try {
       const check = await axios.put(
-        `http://82.180.132.111:4500/post/${id}`,
-        { jobname, salary, age, shoploc, shopname, workersReq, timing },
+        `http://82.180.132.111/image1/${id}`,
+        formData,
         config
       );
       alert("record updated successfully");
       Router.push(`/my_posts`);
+      console.log(check);
+      // navigate("/session-timed-out");
+      // console.log(sendForm);
+    } catch (error) {
+      console.log("Error", error);
+    }
+  }
+
+
+  async function update(id) {
+    console.log(set);
+    // if(!postimg||!jobname||!shopname||!shoploc||!workersReq||!salary||!timing)
+    // {
+    //   alert("please fill the fields")
+    // }
+    // else{
+    //
+    // }
+    try {
+      const check = await axios.post(
+        `http:82.180.132.111:4500/setImage/${id}`,
+        formData,
+        config
+      );
+      alert("record updated successfully");
+      // Router.push(`/my_posts`);
       console.log(check);
       // navigate("/session-timed-out");
       // console.log(sendForm);
@@ -195,6 +223,7 @@ const index = ({ handleClose }) => {
             <Grid item xs={12}>
               <input type="file" onChange={(e) => setpostimg(e.target.files[0])} />
             </Grid>
+            <button onClick={updatePic}>update</button>
             <Grid item xs={12}>
               <TextField
                 id="outlined-basic"

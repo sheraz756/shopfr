@@ -62,6 +62,7 @@ const JWTtoken = window.localStorage.getItem("JWTtoken");
 var { _doc } = jwt_decode(token);
 const _id = _doc._id
 const userimg1 = _doc.userimg
+console.log('userimg1', userimg1)
 console.log(userimg1)
   useEffect(() => {
     async function UserProfile() {
