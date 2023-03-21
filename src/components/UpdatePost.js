@@ -51,15 +51,17 @@ const UpdatePost = ({ id, closeModal }) => {
     const [age, setage] = useState();
     const [experience, setexperience] = useState();
     const [description, setdescription] = useState();
+   
     // const JWTtoken = window.localStorage.getItem("JWTtoken");/
     const formData = new FormData();
     formData.append("postimg", postimg);
-    formData.append("jobname", jobname)
-    formData.append("shopname", shopname)
-    formData.append("shoploc", shoploc)
-    formData.append("workersReq", workersReq)
-    formData.append("salary", salary)
-    formData.append("timing", timing)
+    // formData.append("jobname", jobname)
+    // formData.append("shopname", shopname)
+    // formData.append("shoploc", shoploc)
+    // formData.append("workersReq", workersReq)
+    // formData.append("salary", salary)
+    // formData.append("timing", timing)
+    
     const JWTtoken = window.localStorage.getItem("JWTtoken");
     const config = {
         headers: {
@@ -67,7 +69,7 @@ const UpdatePost = ({ id, closeModal }) => {
         },
     };
     const set = useParams();
-
+    console.log(id,"ok")
     async function updatePic(id) {
         console.log(set);
         // if(!postimg||!jobname||!shopname||!shoploc||!workersReq||!salary||!timing)
@@ -77,9 +79,12 @@ const UpdatePost = ({ id, closeModal }) => {
         // else{
         //
         // }
+       
+        console.log(set)
         try {
-            const check = await axios.put(
-                `http://82.180.132.111:4500/image1/${id}`,
+            const check = await axios.post(
+                `http://82.180.132.111:4500/setImage/${id}`,
+                
                 formData,
                 config
             );
@@ -103,11 +108,11 @@ const UpdatePost = ({ id, closeModal }) => {
         // else{
         //
         // }
-        try {
-            const check = await axios.post(
-                `http://82.180.132.111:4500/setImage/${id}`,
-                formData,
-                config
+        try  {
+            const check = await axios.put(
+              `http://82.180.132.111:4500/post/${id}`,
+              {jobname,shoploc,shopname,workersReq,salary,timing},
+              config
             );
             alert("record updated successfully");
             // Router.push(`/my_posts`);
@@ -221,9 +226,12 @@ const UpdatePost = ({ id, closeModal }) => {
                             />
                         </Grid>
                         <Grid item xs={12}>
+
+
+                        
                             <input type="file" onChange={(e) => setpostimg(e.target.files[0])} />
                         </Grid>
-                        <button onClick={updatePic}>update</button>
+                        <button onClick={() => updatePic(id, Router.push('/my_posts'))}>Update</button>
                         <Grid item xs={12}>
                             <TextField
                                 id="outlined-basic"

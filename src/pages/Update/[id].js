@@ -78,8 +78,8 @@ const index = ({ handleClose }) => {
     // }
     try {
       const check = await axios.put(
-        `http://82.180.132.111/image1/${id}`,
-        formData,
+        `http://82.180.132.111/post/${id}`,
+        {jobname,shoploc,shopname,workersReq,salary,timing},
         config
       );
       alert("record updated successfully");
@@ -223,7 +223,7 @@ const index = ({ handleClose }) => {
             <Grid item xs={12}>
               <input type="file" onChange={(e) => setpostimg(e.target.files[0])} />
             </Grid>
-            <button onClick={updatePic}>update</button>
+            {/* <button onClick={updatePic}>update</button> */}
             <Grid item xs={12}>
               <TextField
                 id="outlined-basic"
